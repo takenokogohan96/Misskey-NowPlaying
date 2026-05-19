@@ -5,19 +5,37 @@ function doGet(e) {
     return showNoSongPage();
   } else {
     song = song.replace("&", '&amp;').replace("'", "&#39;").replace('"', '&#34;');
-    artist = artist.replace("&", '&amp;').replace("'", "&#39;").replace('"', '&#34;');
-
-    var text;
-    var plaintext;
-
-    if (artist_2 == "") {
-      text = "🎵%20[" + song + "](" + external_urls + ")%0A🎤%20" + artist + "%0A%23nowplaying%3Csmall%3E%20|%20" + device + "%3C/small%3E";
-      plaintext = "🎵 [" + song + "](" + external_urls + ")<br>🎤 " + artist + "<br>#nowplaying&lt;small&gt; | " + device + "&lt;/small&gt;";
-    } else {
-      artist_2 = artist_2.replace("&", '&amp;').replace("'", "&#39;").replace('"', '&#34;');
-      text = "🎵%20[" + song + "](" + external_urls + ")%0A🎤%20" + artist + "%0A🎤%20" + artist_2 + "%0A%23nowplaying%3Csmall%3E%20|%20" + device + "%3C/small%3E";
-      plaintext = "🎵 [" + song + "](" + external_urls + ")<br>🎤 " + artist + "<br>🎤 " + artist_2 + "<br>#nowplaying&lt;small&gt; | " + device + "&lt;/small&gt;";
+    
+    // Song part
+    var songText = song;
+    var songPlain = song;
+    if (external_urls && external_urls !== "undefined") {
+      songText = "[" + song + "](" + external_urls + ")";
+      songPlain = "[" + song + "](" + external_urls + ")";
     }
+
+    var textParts = ["🎵%20" + songText];
+    var plainParts = ["🎵 " + songPlain];
+
+    // Artist part
+    if (artist && artist !== "") {
+      artist = artist.replace("&", '&amp;').replace("'", "&#39;").replace('"', '&#34;');
+      textParts.push("🎤%20" + artist);
+      plainParts.push("🎤 " + artist);
+
+      if (artist_2 && artist_2 !== "") {
+        artist_2 = artist_2.replace("&", '&amp;').replace("'", "&#39;").replace('"', '&#34;');
+        textParts.push("🎤%20" + artist_2);
+        plainParts.push("🎤 " + artist_2);
+      }
+    }
+
+    // Hashtag & device part
+    textParts.push("%23nowplaying%3Csmall%3E%20|%20" + device + "%3C/small%3E");
+    plainParts.push("#nowplaying&lt;small&gt; | " + device + "&lt;/small&gt;");
+
+    var text = textParts.join("%0A");
+    var plaintext = plainParts.join("<br>");
 
     var misskeyUrl = "https://misskey.io/share?text=" + text;
     return showSharePage(misskeyUrl, plaintext);
@@ -357,16 +375,24 @@ function getNowPlaying(access_token, basic_authorization) {
 function getArtistAndSongString(response) {
   const parsedResponse = JSON.parse(response);
   const song = parsedResponse.item.name;
-  const external_urls = parsedResponse.item.external_urls.spotify;
-  const artist = parsedResponse.item.artists[0].name;
-
-  var artist_2 = ""
-  if (parsedResponse.item.artists.length > 1) {
-    artist_2 = parsedResponse.item.artists[1].name
+  
+  var external_urls = "";
+  if (parsedResponse.item.external_urls && parsedResponse.item.external_urls.spotify) {
+    external_urls = parsedResponse.item.external_urls.spotify;
   }
-  if (parsedResponse.item.artists.length > 2) {
-    const other = parsedResponse.item.artists.length - 2
-    artist_2 = artist_2 + "、他" + other + "名"
+  
+  var artist = "";
+  if (parsedResponse.item.artists && parsedResponse.item.artists.length > 0 && parsedResponse.item.artists[0].name) {
+    artist = parsedResponse.item.artists[0].name;
+  }
+
+  var artist_2 = "";
+  if (parsedResponse.item.artists && parsedResponse.item.artists.length > 1 && parsedResponse.item.artists[1].name) {
+    artist_2 = parsedResponse.item.artists[1].name;
+    if (parsedResponse.item.artists.length > 2) {
+      const other = parsedResponse.item.artists.length - 2;
+      artist_2 = artist_2 + "、他" + other + "名";
+    }
   }
 
   var device = parsedResponse.device.name;
