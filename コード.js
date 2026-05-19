@@ -5,7 +5,7 @@ function doGet(e) {
     return showNoSongPage();
   } else {
     song = song.replace("&", '&amp;').replace("'", "&#39;").replace('"', '&#34;');
-    
+
     // Song part
     var songText = song;
     var songPlain = song;
@@ -53,12 +53,12 @@ function showSharePage(misskeyUrl, plaintext) {
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-color: #0c1210;
-      --card-bg: #141a18;
+      --bg-color: #13151a;
+      --card-bg: #181b21;
       --text-color: #f3f4f6;
       --text-muted: #9ca3af;
-      --accent-color: #1ed760;
-      --border-color: #09401c;
+      --accent-color: #99a8ff;
+      --accent-bright: #b3beff;
     }
     
     * {
@@ -84,7 +84,7 @@ function showSharePage(misskeyUrl, plaintext) {
       width: 90%;
       max-width: 480px;
       background: var(--card-bg);
-      border: 1px solid var(--border-color);
+      border: 1px solid var(--accent-color);
       border-radius: 24px;
       padding: 40px 32px;
       text-align: center;
@@ -112,7 +112,6 @@ function showSharePage(misskeyUrl, plaintext) {
     
     .preview-box {
       background: rgba(0, 0, 0, 0.2);
-      border: 1px solid rgba(255, 255, 255, 0.04);
       border-radius: 12px;
       padding: 16px;
       text-align: left;
@@ -180,12 +179,11 @@ function showNoSongPage() {
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-color: #0c1210;
-      --card-bg: #141a18;
+      --bg-color: #13151a;
+      --card-bg: #181b21;
       --text-color: #f3f4f6;
       --text-muted: #9ca3af;
-      --accent-color: #1ed760;
-      --border-color: #09401c;
+      --accent-color: #99a8ff;
     }
     
     * {
@@ -211,7 +209,7 @@ function showNoSongPage() {
       width: 90%;
       max-width: 400px;
       background: var(--card-bg);
-      border: 1px solid var(--border-color);
+      border: 1px solid var(--accent-color);
       border-radius: 24px;
       padding: 48px 32px;
       text-align: center;
@@ -242,32 +240,6 @@ function showNoSongPage() {
       color: var(--text-muted);
       margin-bottom: 32px;
       line-height: 1.5;
-    }
-    
-    .btn {
-      display: inline-block;
-      width: 100%;
-      padding: 14px;
-      background: rgba(180, 233, 0, 0.1);
-      border: 1px solid rgba(180, 233, 0, 0.3);
-      border-radius: 12px;
-      color: var(--accent-color);
-      font-size: 15px;
-      font-weight: 600;
-      text-decoration: none;
-      cursor: pointer;
-      transition: transform 0.1s ease;
-    }
-    
-    .btn:hover {
-      background: rgba(180, 233, 0, 0.2);
-      border-color: var(--accent-color);
-      filter: brightness(1.15);
-    }
-    
-    .btn:active {
-      transform: scale(0.96);
-      filter: brightness(0.9);
     }
   </style>
 </head>
@@ -375,12 +347,12 @@ function getNowPlaying(access_token, basic_authorization) {
 function getArtistAndSongString(response) {
   const parsedResponse = JSON.parse(response);
   const song = parsedResponse.item.name;
-  
+
   var external_urls = "";
   if (parsedResponse.item.external_urls && parsedResponse.item.external_urls.spotify) {
     external_urls = parsedResponse.item.external_urls.spotify;
   }
-  
+
   var artist = "";
   if (parsedResponse.item.artists && parsedResponse.item.artists.length > 0 && parsedResponse.item.artists[0].name) {
     artist = parsedResponse.item.artists[0].name;
