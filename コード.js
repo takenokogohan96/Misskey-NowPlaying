@@ -374,8 +374,10 @@ function getArtistAndSongString(response) {
   }
 
   var device = parsedResponse.device.name;
-  if (device == "iPhone") {
-    device = "iPhone 15 Pro";
+  const propKey = device.toLowerCase() + "_device";
+  const mappedDevice = PropertiesService.getScriptProperties().getProperty(propKey);
+  if (mappedDevice) {
+    device = mappedDevice;
   }
   return { song, external_urls, artist, artist_2, device };
 }
