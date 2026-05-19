@@ -1,5 +1,17 @@
 # Misskey-NowPlaying
-### 生成画面
-![image](https://i.imgur.com/uqe5Vg2.png)
-### 共有画面
-![image](https://i.imgur.com/fF8Uxby.png)
+Spotifyで再生中の曲情報を misskey の `/share` にセットするGAS駆動のWebアプリ
+<br>
+## 機能
+デプロイ先にアクセスすると、以下の３つの情報がセットされる共有画面へのリンクを生成する
+<br>
+- 曲名
+- アーティスト名
+- 再生中のデバイス名
+<br>
+
+ウェブアプリとしてデプロイするため、次のような場所から呼び出すことができる
+- misskeyデッキUIのウィジェット
+- ブラウザのブックマーク
+
+## 動作イメージ
+![image](https://i.imgur.com/kXnZ7n3.png)
