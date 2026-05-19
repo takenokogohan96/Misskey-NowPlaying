@@ -375,14 +375,7 @@ function getArtistAndSongString(response) {
 
   var device = parsedResponse.device.name;
   if (device == "iPhone") {
-    device = "iPhone 13 mini";
-  } else if (device == "TH-CENTIO") {
-    device = "TH-CENTIO";
-  } else if (device == "TH-VAIO") {
-    device = "VAIO SX12";
-  } else if (device == "TH-MACBOOK") {
-    device = "MBA(11-inch, 2015)";
+    device = "iPhone 15 Pro";
   }
-
   return { song, external_urls, artist, artist_2, device };
 }
