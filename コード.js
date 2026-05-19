@@ -38,11 +38,11 @@ function doGet(e) {
     var plaintext = plainParts.join("<br>");
 
     var misskeyUrl = "https://misskey.io/share?text=" + text;
-    return showSharePage(misskeyUrl, plaintext);
+    return showSharePage(misskeyUrl, song, artist, artist_2, device);
   }
 }
 
-function showSharePage(misskeyUrl, plaintext) {
+function showSharePage(misskeyUrl, song, artist, artist_2, device) {
   var htmlContent = `
 <!DOCTYPE html>
 <html>
@@ -114,9 +114,9 @@ function showSharePage(misskeyUrl, plaintext) {
       background: rgba(0, 0, 0, 0.2);
       border-radius: 12px;
       padding: 16px;
-      text-align: left;
+      text-align: center;
       font-size: 14px;
-      line-height: 1.6;
+      line-height: 1.8;
       margin-bottom: 28px;
       color: #d1d5db;
     }
@@ -152,7 +152,10 @@ function showSharePage(misskeyUrl, plaintext) {
     <h1>Misskey-NowPlaying</h1>
     
     <div class="preview-box">
-      ${plaintext}
+      <div>🎵 ${song}</div>
+      ${artist ? `<div>🎤 ${artist}</div>` : ''}
+      ${artist_2 ? `<div>🎤 ${artist_2}</div>` : ''}
+      <div>🔊 ${device}</div>
     </div>
     
     <!-- target="_top" replaces the current GAS tab with the Misskey share page -->
