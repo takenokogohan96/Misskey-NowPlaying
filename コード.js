@@ -167,7 +167,7 @@ function showNoSongPage() {
       --text-color: #f3f4f6;
       --text-muted: #9ca3af;
       --accent-color: #1ed760;
-      --border-color: rgba(180, 233, 0, 0.15);
+      --border-color: #09401c
     }
     
     * {
@@ -255,13 +255,9 @@ function showNoSongPage() {
 </head>
 <body>
   <div class="container">
-    <div class="music-icon">🎵💤</div>
+    <div class="music-icon">💤</div>
     <h1>Spotify is Currently Idle</h1>
-    <p class="subtitle">Nothing is playing on your Spotify account right now. Play some music and click below to try again!</p>
-    
-    <button onclick="window.location.reload();" class="btn">
-      Check Again
-    </button>
+    <p class="subtitle">Not playing</p>
   </div>
 </body>
 </html>
