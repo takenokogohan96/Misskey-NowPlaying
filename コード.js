@@ -39,8 +39,8 @@ function showSharePage(misskeyUrl, plaintext) {
       --card-bg: #141a18;
       --text-color: #f3f4f6;
       --text-muted: #9ca3af;
-      --accent-color: #b4e900;
-      --border-color: rgba(180, 233, 0, 0.15);
+      --accent-color: #1ed760;
+      --border-color: #09401c;
     }
     
     * {
@@ -89,7 +89,7 @@ function showSharePage(misskeyUrl, plaintext) {
       font-size: 24px;
       font-weight: 700;
       margin-bottom: 12px;
-      color: var(--accent-color);
+      color: var(--text-color);
     }
     
     .preview-box {
@@ -167,7 +167,7 @@ function showNoSongPage() {
       --text-color: #f3f4f6;
       --text-muted: #9ca3af;
       --accent-color: #1ed760;
-      --border-color: #09401c
+      --border-color: #09401c;
     }
     
     * {
@@ -216,7 +216,7 @@ function showNoSongPage() {
       font-size: 22px;
       font-weight: 700;
       margin-bottom: 12px;
-      color: var(--accent-color);
+      color: var(--text-color);
     }
     
     p.subtitle {
