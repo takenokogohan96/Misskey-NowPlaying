@@ -9,8 +9,8 @@ Spotifyで再生中の曲情報を misskey の `/share` にセットするGAS駆
 - 再生中のデバイス名
 <br>
 ウェブアプリとしてデプロイするため、次のような場所から呼び出すことができる
+<br>
 - misskeyデッキUIのウィジェット
 - ブラウザのブックマーク
-
 ## 動作イメージ
 ![image](https://i.imgur.com/kXnZ7n3.png)
