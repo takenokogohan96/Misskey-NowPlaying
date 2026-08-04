@@ -265,7 +265,7 @@ function generate_sharelink() {
   // 認証情報
   const client_id = PropertiesService.getScriptProperties().getProperty("Client ID");
   const client_secret = PropertiesService.getScriptProperties().getProperty("Client secret");
-  const authorization_code = PropertiesService.getScriptProperties().getProperty("Authrization code");
+  const authorization_code = PropertiesService.getScriptProperties().getProperty("Authorization code");
   const basic_authorization = Utilities.base64Encode(client_id + ":" + client_secret);
 
   // Spotify へのアクセストークンを取得
