@@ -282,7 +282,7 @@ function getFirstAccessTokenToSpotify(authorization_code, basic_authorization) {
   const payload = {
     "grant_type": "authorization_code",
     "code": authorization_code,
-    "redirect_uri": "http://localhost:3000"
+    "redirect_uri": "http://127.0.0.1:3000"
   };
   const options = {
     "payload": payload,
